@@ -1,7 +1,7 @@
 package com.sppxs.root.schedulers.blogWatcher;
 
-import com.sppxs.root.client.resources.post.Blog;
-import com.sppxs.root.client.resources.post.BlogService;
+import com.sppxs.root.client.resources.blog.Blog;
+import com.sppxs.root.client.resources.blog.BlogService;
 import com.sppxs.root.schedulers.module.ExpiredTrigger;
 import com.sppxs.root.schedulers.module.ExpiredTriggerRepository;
 import org.quartz.JobDataMap;

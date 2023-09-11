@@ -1,4 +1,4 @@
-package com.sppxs.root.client.resources.post;
+package com.sppxs.root.client.resources.blog;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

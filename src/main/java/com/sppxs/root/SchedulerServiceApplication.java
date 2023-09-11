@@ -1,7 +1,7 @@
 package com.sppxs.root;
 
-import com.sppxs.root.client.resources.post.Blog;
-import com.sppxs.root.client.resources.post.BlogRepository;
+import com.sppxs.root.client.resources.blog.Blog;
+import com.sppxs.root.client.resources.blog.BlogRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
