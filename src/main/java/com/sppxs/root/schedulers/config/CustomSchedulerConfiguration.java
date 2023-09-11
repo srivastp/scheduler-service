@@ -44,15 +44,6 @@ public class CustomSchedulerConfiguration {
         factory.setApplicationContextSchedulerContextKey("applicationContext");
         return factory;
     }
-    @Bean("customEmailSchedulerFactoryBean")
-    public SchedulerFactoryBean customEmailSchedulerFactoryBean(DataSource dataSource) {
-        SchedulerFactoryBean factory = new SchedulerFactoryBean();
-        Properties properties = new Properties();
-        properties.setProperty("org.quartz.threadPool.threadNamePrefix", "sched-email_worker");
-        factory.setQuartzProperties(properties);
-        factory.setDataSource(dataSource);
-        return factory;
-    }
 
 
     @Bean("customEmailSchedulerFactoryBean")

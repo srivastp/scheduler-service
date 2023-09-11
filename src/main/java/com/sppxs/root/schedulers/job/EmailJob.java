@@ -18,7 +18,6 @@ public class EmailJob extends QuartzJobBean {
         } catch (InterruptedException ex) {
             logger.error("Thread Errror..");
         }
-
         logger.info("%% Executing EmailJob: Sending email to {} \n [Thread: {} || Pool: {}]",
                 param,
                 Thread.currentThread().getName(),
