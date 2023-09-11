@@ -1,5 +1,8 @@
 package com.sppxs.root.schedulers.config;
 
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
@@ -25,6 +28,22 @@ public class CustomSchedulerConfiguration {
         factory.setApplicationContextSchedulerContextKey("applicationContext");
         return factory;
     }
+    @Bean("customEmailSchedulerFactoryBean")
+    public SchedulerFactoryBean customEmailSchedulerFactoryBean(DataSource dataSource) {
+        SchedulerFactoryBean factory = new SchedulerFactoryBean();
+        Properties properties = new Properties();
+        properties.setProperty("org.quartz.threadPool.threadNamePrefix", "sched-email_worker");
+        factory.setQuartzProperties(properties);
+        factory.setDataSource(dataSource);
+        return factory;
+    }
 
+    @Bean("customEmailScheduler")
+    public Scheduler customEmailScheduler(
+            @Qualifier("customEmailSchedulerFactoryBean") SchedulerFactoryBean factory) throws SchedulerException {
+        Scheduler scheduler = factory.getScheduler();
+        scheduler.start();
+        return scheduler;
+    }
 
 }

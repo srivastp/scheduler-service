@@ -29,7 +29,7 @@ public class PeriodicTask {
     @Scheduled(cron = "${every-50-sec-cron}")
     @Transactional
     public void markTriggerForDeletionOnJobCompletion() {
-        logger.info("Periodic task: {}; Thread: {}", new Date(), Thread.currentThread().getName());
+        logger.info("$$ x   Periodic task: {}; Thread: {}", new Date(), Thread.currentThread().getName());
         //ToDo - PS - Either delete records or find records with deleteDate = null;
         List<ExpiredTrigger> triggersMarkedForExpiration = expiredTriggerRepository.findAll();
         triggersMarkedForExpiration.stream().forEach(trigger -> {
