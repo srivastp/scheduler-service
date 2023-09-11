@@ -10,11 +10,19 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/jobs")
-public class PostSubscriptionController {
+public class JobSubscriptionController {
     private final BlogWatcherService blogWatcherService;
+    private final JobSubscriptionService jobSubscriptionService;
 
-    public PostSubscriptionController(BlogWatcherService blogWatcherService) {
+    public JobSubscriptionController(BlogWatcherService blogWatcherService, JobSubscriptionService jobSubscriptionService) {
         this.blogWatcherService = blogWatcherService;
+        this.jobSubscriptionService = jobSubscriptionService;
+    }
+
+    @GetMapping("/")
+    @ResponseStatus(value = HttpStatus.OK)
+    public ResponseEntity<?> listJobs() {
+        return jobSubscriptionService.findAllJobs();
     }
 
     @PostMapping("/subscribe")
