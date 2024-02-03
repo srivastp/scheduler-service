@@ -31,6 +31,7 @@ public class Job {
     private long endTime;
     private String calendarName;
     private long misfireInstr;
+    // https://thorben-janssen.com/mapping-blobs-and-clobs-with-hibernate-and-jpa/
     @Lob
     private Blob jobData;
 

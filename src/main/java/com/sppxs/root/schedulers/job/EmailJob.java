@@ -13,6 +13,11 @@ public class EmailJob extends QuartzJobBean {
     public void executeInternal(JobExecutionContext context) {
         JobDataMap dataMap = context.getJobDetail().getJobDataMap();
         String param = dataMap.getString("email");
+        try {
+            Thread.sleep(30_000);
+        } catch (InterruptedException ex) {
+            logger.error("Therad Errror..");
+        }
 
         logger.info("%% Executing EmailJob: Sending email to {} \n [Thread: {} || Pool: {}]",
                 param,
