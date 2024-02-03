@@ -36,7 +36,7 @@ public class CustomBlogWatcherScheduler {
             //throw new EmailAlreadyRegisteredException();
             throw new RuntimeException("Already Subscribed");
         } catch (SchedulerException e) {
-            logger.error("Unable to add trigger {}", e);
+            logger.error("Unable to add trigger {}", e.getStackTrace());
             //throw new GenericServerException();
             throw new RuntimeException();
         }

@@ -21,6 +21,15 @@ public class BlogWatcherJob extends QuartzJobBean {
 
     @Override
     public void executeInternal(JobExecutionContext context) {
+        logger.info("Executing BlogWatcherJob - Key {}", context.getTrigger().getKey());
+
+        try {
+            Thread.sleep(180_000);
+            //Thread.sleep(2_000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
         ApplicationContext applicationContext;
         try {
             applicationContext = (ApplicationContext)

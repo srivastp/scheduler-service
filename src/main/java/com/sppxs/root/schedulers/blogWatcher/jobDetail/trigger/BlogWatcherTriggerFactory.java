@@ -18,7 +18,7 @@ public class BlogWatcherTriggerFactory {
     }
 
     public Trigger generateTrigger(final String blogId, final String username) {
-        String keyString = "username" + "-" + blogId + "-" + UUID.randomUUID();
+        String keyString = username + "-" + blogId + "-" + UUID.randomUUID();
         JobDataMap jobDataMap = new JobDataMap();
         jobDataMap.put("username", username);
         jobDataMap.put("blogId", blogId);
@@ -26,7 +26,7 @@ public class BlogWatcherTriggerFactory {
                 .withIdentity(keyString)
                 .forJob(postWatcherJobDetail.getJobDetail())
                 .withSchedule(
-                        CronScheduleBuilder.cronSchedule("*/30 * * * * ?"))
+                        CronScheduleBuilder.cronSchedule("*/2 * * * * ?"))
                 .usingJobData(jobDataMap).
                 build();
     }

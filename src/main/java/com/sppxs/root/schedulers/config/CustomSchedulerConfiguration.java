@@ -18,6 +18,22 @@ public class CustomSchedulerConfiguration {
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
         Properties properties = new Properties();
         properties.setProperty("org.quartz.threadPool.threadNamePrefix", "sched-blog-watcher_worker");
+
+        //ToDO: Try using Misfire Properties
+        properties.setProperty("org.quartz.threadPool.threadCount", "3");
+        //properties.setProperty("org.quartz.jobStore.misfireThreshold", "2"); //60000
+        //properties.setProperty("org.quartz.jobStore.class", "org.quartz.impl.jdbcjobstore.JobStoreTX");
+
+        properties.setProperty("org.quartz.jobStore.isClustered", "true");
+        //properties.setProperty("org.quartz.jobStore.clusterCheckinInterval", "20000");
+        //properties.setProperty("oorg.quartz.scheduler.instanceName", "my-instance");
+
+        //properties.setProperty("org.quartz.threadPool.class", "org.quartz.simpl.SimpleThreadPool");
+        //properties.setProperty("org.quartz.threadPool.threadPriority", "8");
+        //properties.setProperty("org.quartz.jobStore.lockHandler.class", "org.quartz.impl.jdbcjobstore.StdRowLockSemaphore");
+        //properties.setProperty("org.quartz.jobStore.lockHandler.maxRetry", "7");
+        //properties.setProperty("org.quartz.jobStore.lockHandler.retryPeriod", "3000");
+
         factory.setQuartzProperties(properties);
         factory.setDataSource(dataSource);
         //factory.setWaitForJobsToCompleteOnShutdown(true);
@@ -37,6 +53,20 @@ public class CustomSchedulerConfiguration {
         factory.setDataSource(dataSource);
         return factory;
     }
+
+
+    @Bean("customEmailSchedulerFactoryBean")
+    public SchedulerFactoryBean customEmailSchedulerFactoryBean(DataSource dataSource) {
+        SchedulerFactoryBean factory = new SchedulerFactoryBean();
+        Properties properties = new Properties();
+        properties.setProperty("org.quartz.threadPool.threadNamePrefix", "sched-email_worker");
+        //ToDO: Try using Misfire Properties
+        //properties.setProperty("org.quartz.jobStore.misfireThreshold", "300000");
+        factory.setQuartzProperties(properties);
+        factory.setDataSource(dataSource);
+        return factory;
+    }
+
 
     @Bean("customEmailScheduler")
     public Scheduler customEmailScheduler(
