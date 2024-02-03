@@ -19,6 +19,13 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.*;
+import java.text.MessageFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
@@ -58,7 +65,8 @@ public class SchedulerServiceApplication {
                     () -> createBlogs(blogRepository, 310)
             ).start();
 
-            /*//Schedule Email Send
+            /*
+            //Schedule Email Send
             new Thread(
                     () -> executeEmailJobs(customEmailScheduler, 20)
             ).start();
@@ -70,6 +78,7 @@ public class SchedulerServiceApplication {
             setUpPublicationsAndAuthors(publicationRepository, authorRepository);*/
         };
     }
+
 
     private void setUpPublicationsAndAuthors(PublicationRepository publicationRepository, AuthorRepository authorRepository) {
 
@@ -115,6 +124,7 @@ public class SchedulerServiceApplication {
         for (int i = 1; i < iterations; i++) {
             int y = rand.nextInt(3) + 3;
             y = 20;
+
             Date after20Seconds = Date.from(LocalDateTime.now().plusSeconds(y).atZone(ZoneId.systemDefault()).toInstant());
 
             JobDetail jobDetail = JobBuilder
@@ -128,6 +138,7 @@ public class SchedulerServiceApplication {
                 customEmailScheduler.scheduleJob(jobDetail, trigger);
                 System.out.println("Incoming new EmailJob request");
                 Thread.sleep(5_000);
+                //Thread.sleep(10_000);
             } catch (SchedulerException e) {
                 System.out.println("Issue running EmailJob");
                 throw new RuntimeException(e);

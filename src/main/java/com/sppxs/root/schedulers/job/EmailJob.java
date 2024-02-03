@@ -16,7 +16,7 @@ public class EmailJob extends QuartzJobBean {
         try {
             Thread.sleep(30_000);
         } catch (InterruptedException ex) {
-            logger.error("Therad Errror..");
+            logger.error("Thread Errror..");
         }
 
         logger.info("%% Executing EmailJob: Sending email to {} \n [Thread: {} || Pool: {}]",
