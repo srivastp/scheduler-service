@@ -45,7 +45,6 @@ public class CustomSchedulerConfiguration {
         return factory;
     }
 
-
     @Bean("customEmailSchedulerFactoryBean")
     public SchedulerFactoryBean customEmailSchedulerFactoryBean(DataSource dataSource) {
         SchedulerFactoryBean factory = new SchedulerFactoryBean();
@@ -57,7 +56,6 @@ public class CustomSchedulerConfiguration {
         factory.setDataSource(dataSource);
         return factory;
     }
-
 
     @Bean("customEmailScheduler")
     public Scheduler customEmailScheduler(

@@ -72,6 +72,7 @@ public class SchedulerServiceApplication {
         };
     }
 
+
     private void setUpPublicationsAndAuthors(PublicationRepository publicationRepository, AuthorRepository authorRepository) {
 
         Author t = new Author();
